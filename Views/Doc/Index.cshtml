@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@Styles.Render("~/Content/styl.css")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Dokumentacja</title>
+    <link rel="stylesheet"
+          media="screen"
+          href="~/Content/styl.css"/>
+</head>
+<body>
+    <div class="container_d">
+        <div class="zdjecie-glowne">
+            <img class="background" src="~/Content/logo.png" alt="logo" />
+        </div>
+        <h1>Dokumentacja</h1>
+        <h2>Cel projektu</h2>
+        Stworzenie strony dla przychodni weterynaryjnej w której można dodać, edytować oraz usuwać z bazy danych pracowników, pacjentów wraz z właścicielami.
+        Umożliwia również umówienie się na wizytę.<br />
+
+        Strona ma na celu poprawę funkcjonowania przychodni weterynaryjnej.
+        <h2>Zastosowanie biznesowe</h2>
+        Tematem przewodnim bazy danych jest przychodnia weterynaryjna i związane z nią dane. <br />
+        Strona z bazą danych przechowuje dane właścicieli zwierząt/klientów, wizyt zwierząt oraz każdego dokonanego zabiegu, szczepienia, czy badania. <br />
+        Dzięki niej weterynarz będzie mógł lepiej zarządzać danymi związanymi ze swoją działalnością i wydajniej obsługiwać klientów.
+
+        <h2>Opis kontrolerów</h2>
+        <ul>
+            <li>DocController - kontroler do naszej dokumentacji</li>
+            <ul>
+                <li>Index - dzięki nadanemu indeksowi możemy wyświetlić dokumentację</li>
+            </ul>
+            <li>HomeController</li>
+            <ul>
+                <li>Index - zwracanie widoku strony startowej</li>
+            </ul>
+            <li>OwnersController - zarządzanie tabelą właścicieli</li>
+            <ul>
+                <li>Index - przypisanie unikalnego id</li>
+                <li>Details - szczegóły o właścicielu</li>
+                <li>Create - tworzenie nowego właściciela</li>
+                <li>Edit - edytowanie właściciela</li>
+                <li>Delete - usuwanie właściciela</li>
+            </ul>
+            <li>PatientsControlle - zarządzanie tabelą pacjentów</li>
+            <ul>
+                <li>Index - przypisanie unikalnego id</li>
+                <li>Details - szczegóły o pacjencie</li>
+                <li>Create - tworzenie nowego pacjenta</li>
+                <li>Edit - edytowanie pacjenta</li>
+                <li>Delete - usuwanie pacjenta</li>
+            </ul>
+            <li>VetsController - zarządzanie tabelą weterynarzy</li>
+            <ul>
+                <li>Index - przypisanie unikalnego id</li>
+                <li>Details - szczegóły o weterynarzu</li>
+                <li>Create - tworzenie nowego weterynarza</li>
+                <li>Edit - edytowanie weterynarza</li>
+                <li>Delete - usuwanie weterynarza</li>
+            </ul>
+            <li>VisitsController - zarządzanie tabelą wizyt</li>
+            <ul>
+                <li>Index - przypisanie unikalnego id</li>
+                <li>Details - szczegóły o wizycie</li>
+                <li>Create - tworzenie nowej wizyty</li>
+                <li>Edit - edytowanie wizyty</li>
+                <li>Delete - usuwanie wizyty</li>
+            </ul>
+        </ul>
+
+        <h2>Opis modeli</h2>
+        <ul>
+            <li>
+                Clinic <br />
+                Opisywany za pomocą atrybutów: Id, Name, OpeningHours<br />
+                Posiada konstruktor parametryczny: Clinic(int id, string name, string openingHours)<br />
+                Który tworzy obiekt o przypisanych polach: id, nazwa, godziny otwarcia.
+            </li>
+            <li>
+                Owner<br />
+                Opisywany za pomocą atrybutów: Id, Name, Surname, PhoneNumber, TownName<br />
+                Id, Name oraz Surname są wymagane <br />
+                Posiada konstruktor nieparametryczny oraz parametryczny: Owner(string name, string surname, string phoneNumber, string townName)<br />
+                Który tworzy obiekt o przypisanych polach: id, imię, nazwisko, numer telefonu, miasto zamieszkania.
+            </li>
+            <li>
+                Patient<br />
+                Opisywany za pomocą atrybutów: Id, Name, Age, Species, PetOwnerId<br />
+                Id, Name, Age oraz PetOwnerId są wymagane <br />
+                Posiada konstruktor nieparametryczny oraz parametryczny:  Patient(string name, int age, string species, int petOwnerId)<br />
+                Który tworzy obiekt o przypisanych polach: imię, wiek, gatunek, id właściciela.
+            </li>
+            <li>
+                Vet<br />
+                Opisywany za pomocą atrybutów: Id, Name, Surname, PhoneNumber, Specjalization, Sex, Price<br />
+                Id, Name oraz Surname są wymagane<br />
+                Posiada konstruktor nieparametryczny oraz parametryczny: Vet(string name, string surname, string phoneNumber, EnumSpecjalization specjalization, EnumSex sex, int price)<br />
+                Który tworzy obiekt o przypisanych polach: imię, nazwisko, numer telefonu, specjalizacja (do wyboru: okulista, kardiolog, internista, chirurg, dentysta), płeć (do wyboru: K i M), cena za wizytę.
+            </li>
+            <li>
+                Visit<br />
+                Opisywany za pomocą atrybutów: Id, Date, Patient, Vet, Diagnosis<br />
+                Id, Date, Patient oraz Vet są wymagane<br />
+                Posiada konstruktor nieparametryczny oraz parametryczny: Visit(DateTime date, Patient patient, Vet vet, string diagnosis)<br />
+                Który tworzy obiekt o przypisanych polach: data wizyty, pacjent (jest to klucz obcy), weterynarz (jest to klucz obcy) oraz diagnoza
+            </li>
+            <li>
+                PatientsOwners<br />
+                Jest to klasa utworzona dla ViewModels łącząca pacjenta (Patient) oraz właściciela (Owner)
+            </li>
+            <li>
+                DataBaseContext<br />
+                Klasa służąca do stworzenia encji co pozwala na wykonanie operacji CRUD na modelach
+            </li>
+        </ul>
+
+        <h2>Opis widoków</h2>
+        <ul>
+            <li>Doc</li>
+            <ul>
+                <li>Index  - widok dokumentacji </li>
+            </ul>
+            <li>Home</li>
+            <ul>
+                <li>Index - widok strony startowej</li>
+            </ul>
+            <li>Owners</li>
+            <ul>
+                <li>Create - wyświetlanie formularza do tworzenia właściciela</li>
+                <li>Delate - wyświetlanie potwierdzenia usunięcia właściciela</li>
+                <li>Details - wyśietlenie szczegółów dotyczących właściciela</li>
+                <li>Edit - wyświetlenie formularza do edytownia właściciela</li>
+                <li>Index</li>
+            </ul>
+            <li>Patients</li>
+            <ul>
+                <li>Create - wyświetlanie formularza do tworzenia pacjenta</li>
+                <li>Delate - wyświetlanie potwierdzenia usunięcia pacjenta</li>
+                <li>Details - wyśietlenie szczegółów dotyczących pacjenta</li>
+                <li>Edit - wyświetlenie formularza do edytownia pacjenta</li>
+                <li>Index</li>
+            </ul>
+            <li>Shared</li>
+            <ul>
+                <li>_Layout - wyświetlanie elementów wspólnych dla czystkich zakładek, czyli: menu górnego i stopki</li>
+                <li>Error - wyświetlanie błędu</li>
+                <li>PatrialView - wyświetlanie logo</li>
+            </ul>
+            <li>Vets</li>
+            <ul>
+                <li>Create - wyświetlanie formularza do tworzenia weterynarza</li>
+                <li>Delate - wyświetlanie potwierdzenia usunięcia weterynarza</li>
+                <li>Details - wyśietlenie szczegółów dotyczących weterynarza</li>
+                <li>Edit - wyświetlenie formularza do edytownia weterynarza</li>
+                <li>Index</li>
+            </ul>
+            <li>Visits</li>
+            <ul>
+                <li>Create - wyświetlanie formularza do tworzenia wizyty</li>
+                <li>Delate - wyświetlanie potwierdzenia usunięcia wizyty</li>
+                <li>Details - wyśietlenie szczegółów dotyczących wizyty</li>
+                <li>Edit - wyświetlenie formularza do edytownia wizyty</li>
+                <li>Index</li>
+            </ul>
+        </ul>
+        <h2>Opis bazy danych</h2>
+        Baza danych składa się z 5 tablel:
+        <div id="lista">
+            <ul>
+                <li>Klinika - zawiera informacja na temat godzin otwarcia oraz nazwę kliniki</li>
+                <li>Właciciel - zawiera dane dotyczące właściciela zwierzęcia, takie jak: imie, nazwisko, numer telefonu oraz miasto pochodzenia</li>
+                <li>Pacjent - zawiera informacje o pacjencie: imie, wiek, gatunek oraz połączenie z właścicielem poprzez IDWlasciciela</li>
+                <li>Weterynarz - zawiera dane odnoścnie weterynarza: imie, nazwisko, telefon, specjalizacja (do wyboru: okulista, kardiolog, internista, chirurg, denstysta)</li>
+                <li>Wizyta - zawiera dane o wizycie, czyli datę wizyty, diazgnozę oraz połączenie z pacjentem któego dotyczy wizyta i weterynarz</li>
+            </ul>
+        </div>
+
+        Wizualizacja bazy danych:
+        <img src="~/Content/BazaDanych.png" alt="baza danych">
+
+        <h2>Podział obowiązków</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Julia Nikiel: </td>
+                    <td>
+                        <ul>
+                            <li>Instrukcja użytkownika opisująca korzystanie z aplikacji</li>
+                            <li>Stworzenie 2 modeli: Owner i Patient wraz z kontrorelami</li>
+                            <li>Stworzenie estetycznej strony startowej i drobne zmiany w layoucie strony</li>
+                            <li>Umieszczenie zasobów na stronie, np. obrazków</li>
+                            <li>Wykorzystanie ViewModeli dla Wizyty z Pacjentem i Weterynarza</li>
+                            <li>Stworzenie seeda do bazy danych</li>
+                            <li>Wykorzystanie HttpStatusCodeResult</li>
+                            <li>Wykorzystanie atrybutów w klasach np. Display, Key itp</li>
+
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ewelina Nieć: </td>
+                    <td>
+                        <ul>
+                            <li>Pełna dokumentacja projektu oraz umieszczenie jej na stronie, większe zmiany w layoucie dokumentacji</li>
+                            <li>Stworzenie 2 modeli: Vet i Visit wraz z kontrorelami</li>
+                            <li>Stworzenie strony startowej zawierającej odnośniki do każdego kontrolera</li>
+                            <li>Wykorzystanie ViewModeli dla Pacjenta wraz z Właścicielem</li>
+                            <li>Wykorzystanie HttpStatusCodeResult</li>
+                            <li>Wykorzystanie widoków częściowych (partial views)</li>
+                            <li>Wykorzystanie atrybutów w klasach np. Display, Key itp</li>
+                            <li>Dokładny podział obowiązków pracy.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

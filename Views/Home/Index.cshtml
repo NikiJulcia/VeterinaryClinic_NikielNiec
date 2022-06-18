@@ -1,0 +1,27 @@
+﻿@model IEnumerable<VeterinaryClinic.Models.DBModels.Clinic>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/StornaStartowa.css")
+
+<head>
+    <link rel="stylesheet" media="screen" href="~/Content/StronaStartowa.css" />
+</head>
+<div class="content">
+    @Html.Partial("PartialView")
+    <table>
+        <tr>
+            <td>
+                godziny otwarcia:
+            </td>
+            <td>
+                od poniedziałku do soboty 9.00 – 22.00 <br>
+                niedziele  10.00 – 20.00
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="dokumentacja">
+    @Html.ActionLink("Dokumentacja", "Index", "Doc")
+</div>
