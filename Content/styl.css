@@ -1,0 +1,48 @@
+:root{
+    --kolor_tla: rgb(235, 237, 235);
+}
+
+body{
+    background-color: var(--kolor_tla);
+    margin: 0px;
+    font-family: monospace;
+    color: rgb(1, 51, 1);
+    font-size: 15px;
+}
+
+.container_d{
+    text-align: justify;
+    text-align: left;
+    min-height: 100vh;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 2,5%;
+    padding-bottom: 2,5%;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#lista{
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    margin: 25px;
+    max-width: 1000px;
+    border-radius: 30px;
+}
+
+.background{
+    height: 60%;
+    width: 60%;
+  }
+.zdjecie-glowne{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+ 

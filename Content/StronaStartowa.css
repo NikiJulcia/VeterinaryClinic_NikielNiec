@@ -1,0 +1,30 @@
+﻿body {
+    background-color:ghostwhite;
+}
+.dokulemntacja {
+    text-decoration:none;
+    color:black;
+}
+.content {
+    font-size: 20px;
+    color: darkslategrey;
+    display: flex;
+    padding-top: 20px;
+}
+.logo {
+    float:left;
+    margin: 24px;
+}
+table {
+    text-align: left;
+    padding: 2%;
+    border: hidden;
+    border-collapse: separate;
+}
+table tr{
+    margin:10px;
+}
+table tr td{
+    padding:20px;
+    margin:10px;
+}
